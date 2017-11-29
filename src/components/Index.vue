@@ -2,7 +2,7 @@
     <div class="layout">
         <Row type="flex">
             <Col span="3" class="layout-menu-left">
-            <Menu active-name="1-2" theme="dark" width="auto" :open-names="['1']">
+            <Menu active-name="1-2" theme="dark" width="auto" :open-names="['1']" style="z-index:1;">
                 <div class="layout-logo-left">
                     <div class="blog_logo">
                         <img src="http://ovfz2ppts.bkt.clouddn.com/1504148682703-logo.png" width="100%" height="100%">
@@ -19,7 +19,7 @@
                         <router-link to="/article/write"><MenuItem name="1-1">写文章</MenuItem></router-link>
                         <router-link to="/article/list"><MenuItem name="1-2">博客列表</MenuItem></router-link>
                     </Submenu>
-                    <Submenu name="2">
+                <Submenu name="2">
                 <template slot="title">
                     <Icon type="ios-keypad">
                     </Icon>
@@ -57,6 +57,7 @@
 
 <style>
     .layout {
+        z-index:1;
         border: 1px solid #d7dde4;
         background: #f5f7f9;
         position: relative;

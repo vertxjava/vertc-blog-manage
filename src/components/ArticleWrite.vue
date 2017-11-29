@@ -1,22 +1,23 @@
 <template>
     <Form :model="formItem" :label-width="80">
-        <FormItem label="文章标题">
-            <Input v-model="formItem.title" placeholder="请输入文章标题"></Input>
-        </FormItem>
-        <FormItem label="文章分类" style="text-align:left">
+        <FormItem label="文章分类" style="text-align:left;">
             <Select v-model="formItem.category">
                     <Option v-for="category in categorys" v-bind:value="category.name">{{category.name}}</Option>
             </Select>
+        </FormItem>
+        <FormItem label="文章标题">
+            <Input v-model="formItem.title" placeholder="请输入文章标题"></Input>
         </FormItem>
         <FormItem label="文章摘要">
             <Input v-model="formItem.description" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="请输入文章摘要"></Input>
         </FormItem>
         <FormItem label="文章内容">
-            <div id="editormd" style="z-index:9999;margin:0px;">
+            <div id="editormd" style="margin:0px;z-index:2;">
                  <textarea style="display:none;"></textarea>
             </div>
            <!-- <Input v-model="formItem.content" type="textarea" :autosize="{minRows: 10,maxRows: 100}" placeholder="请输入文章内容"></Input>-->
         </FormItem>
+        
         <FormItem style="text-align:left">
             <Button type="primary" @click="handleSubmit('formInline')">提交</Button>
             <Button type="ghost" style="margin-left: 8px">Cancel</Button>

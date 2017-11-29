@@ -1,4 +1,4 @@
-# vertc-blog-manage-new
+# vertc-blog-manage
 
 > A Vue.js project
 

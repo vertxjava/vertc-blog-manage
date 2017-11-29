@@ -1,13 +1,15 @@
 <template>
-    <Table border :columns="columns" :data="data">
-    </Table>
+    <div>
+        <Table border :columns="columns" :data="data"></Table>
+        <Page :total="100" style="margin-top:10px;text-align:left;"></Page>
+    </div>
 </template>
 <script>
     export default {
         data() {
             return {
                 columns: [{
-                         title: 'ID',
+                        title: 'ID',
                         key: 'id',
                         width: 130
                     },
@@ -15,8 +17,7 @@
                         title: '标题',
                         key: 'title',
                     },
-                    
-                     {
+                    {
                         title: '分类',
                         key: 'category',
                         width: 80
@@ -88,7 +89,12 @@
         methods: {
             show(index) {
                 var id = `${this.data[index].id}`;
-                this.$router.push({path:'/article/update',query:{id:id}});
+                this.$router.push({
+                    path: '/article/update',
+                    query: {
+                        id: id
+                    }
+                });
             },
             remove(index) {
                 this.data.splice(index, 1);
