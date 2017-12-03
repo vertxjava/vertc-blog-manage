@@ -1,12 +1,12 @@
 <template>
     <Form :model="formItem" :label-width="80">
-        <FormItem label="文章标题">
-            <Input v-model="formItem.title" placeholder="请输入文章标题"></Input>
-        </FormItem>
         <FormItem label="文章分类" style="text-align:left">
             <Select v-model="formItem.category">
                 <Option v-for="category in categorys" v-bind:value="category.name">{{category.name}}</Option>
             </Select>
+        </FormItem>
+        <FormItem label="文章标题">
+            <Input v-model="formItem.title" placeholder="请输入文章标题"></Input>
         </FormItem>
         <FormItem label="文章摘要">
             <Input v-model="formItem.description" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="请输入文章摘要"></Input>
@@ -29,7 +29,7 @@ var Editor;
 export default {
   data() {
     return {
-      formItem: "",
+      formItem: {},
       categorys: []
     };
   },
@@ -60,7 +60,6 @@ export default {
         .then(
           response => {
             this.formItem = response.data;
-            console.log(response.data);
             Editor = editormd("editormd", {
               markdown: response.data.content,
               width: "100%",

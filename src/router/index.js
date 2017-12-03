@@ -32,6 +32,26 @@ const ArticleUpdate = resolve => {
   })
 }
 
+const CategoryAdd = resolve => {
+  require.ensure(['../components/CategoryAdd.vue'], () => {
+      resolve(require('../components/CategoryAdd.vue'))
+  })
+}
+
+const CategoryList = resolve => {
+  require.ensure(['../components/CategoryList.vue'], () => {
+      resolve(require('../components/CategoryList.vue'))
+  })
+}
+
+const CategoryUpdate = resolve => {
+  require.ensure(['../components/CategoryUpdate.vue'], () => {
+      resolve(require('../components/CategoryUpdate.vue'))
+  })
+}
+
+
+
 export default new Router({
   routes: [
     {
@@ -62,6 +82,30 @@ export default new Router({
           path: '/article/update',
           name: 'ArticleUpdate',
           component: ArticleUpdate,
+          meta:{
+            requireAuth: true
+          }
+        },
+        {
+          path: '/category/add',
+          name: 'CategoryAdd',
+          component: CategoryAdd,
+          meta:{
+            requireAuth: true
+          }
+        },
+        {
+          path: '/category/list',
+          name: 'CategoryList',
+          component: CategoryList,
+          meta:{
+            requireAuth: true
+          }
+        },
+        {
+          path: '/category/update',
+          name: 'CategoryUpdate',
+          component: CategoryUpdate,
           meta:{
             requireAuth: true
           }

@@ -25,8 +25,8 @@
                     </Icon>
                     分类管理
                 </template>
-                        <MenuItem name="2-1">新增分类</MenuItem>
-                        <MenuItem name="2-2">分类列表</MenuItem>
+                        <router-link to="/category/add"><MenuItem name="2-1">新增分类</MenuItem></router-link>
+                        <router-link to="/category/list"><MenuItem name="2-2">分类列表</MenuItem></router-link>
                     </Submenu>
                 </Menu>
             </Col>

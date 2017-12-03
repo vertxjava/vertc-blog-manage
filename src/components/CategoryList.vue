@@ -16,61 +16,22 @@ export default {
           width: 130
         },
         {
-          title: "标题",
-          key: "title",
-          ellipsis:true
-        },
-        {
-          title: "分类",
-          key: "category",
-          width: 90
-          
-        },
-        {
-          title: "作者",
-          key: "author",
-          width: 80
+          title: "分类名称",
+          key: "name"
         },
         {
           title: "创建时间",
           key: "createDate",
-          width: 140
-        },
-        {
-          title: "阅读数",
-          key: "reads",
-          width: 80
-        },
-        {
-          title: "是否显示",
-          key: "showStatus",
-          width: 90
+          width: 150
+          
         },
         {
           title: "操作",
           key: "action",
-          width: 240,
+          width: 180,
           align: "center",
           render: (h, params) => {
             return h("div", [
-              h(
-                "Button",
-                {
-                  props: {
-                    type: "primary",
-                    size: "small"
-                  },
-                  style: {
-                    marginRight: "5px"
-                  },
-                  on: {
-                    click: () => {
-                      this.switchShowStatus(params.index);
-                    }
-                  }
-                },
-                "切换状态"
-              ),
               h(
                 "Button",
                 {
@@ -87,7 +48,7 @@ export default {
                     }
                   }
                 },
-                "修改文章"
+                "修改分类"
               ),
               h(
                 "Button",
@@ -102,7 +63,7 @@ export default {
                     }
                   }
                 },
-                "删除文章"
+                "删除分类"
               )
               
             ]);
@@ -139,7 +100,7 @@ export default {
           }
         );
 
-        this.$http.get("http://www.vertxjava.com/api/manage/article/count").then(
+        this.$http.get("http://www.vertxjava.com/api/manage/category/count").then(
         response => {
           _this.paging.total = response.data.count;
           this.$Loading.finish();
@@ -157,7 +118,7 @@ export default {
   methods: {
     getRequestUrl() {
       return (
-        "http://www.vertxjava.com/api/manage/article/listByPage?page=" +
+        "http://www.vertxjava.com/api/manage/category/listByPage?page=" +
         this.paging.page +
         "&pageSize=" +
         this.paging.pageSize
@@ -178,7 +139,7 @@ export default {
     show(index) {
       var id = `${this.data[index].id}`;
       this.$router.push({
-        path: "/article/update",
+        path: "/category/update",
         query: {
           id: id
         }
@@ -186,7 +147,7 @@ export default {
     },
     remove(index) {
       var id = `${this.data[index].id}`;
-      this.$http.get("http://www.vertxjava.com/api/manage/article/delete?id="+id).then(
+      this.$http.get("http://www.vertxjava.com/api/manage/category/delete?id="+id).then(
           response => {
             this.$Message.success("删除成功");
             this.data.splice(index, 1);
@@ -194,24 +155,6 @@ export default {
             this.$Message.error("删除失败");
           }
         );
-    },
-    switchShowStatus(index){
-      var id = `${this.data[index].id}`
-      var showStatus = `${this.data[index].showStatus}`
-      this.$http.get("http://www.vertxjava.com/api/manage/article/switchShowStatus?id="+id+"&showStatus="+showStatus).then(
-          response => {
-            this.$Message.success("切换成功");
-            var show;
-            if (showStatus === 'true'){
-              show = 'false';
-            } else {
-              show = 'true';
-            }
-            this.data[index].showStatus = show;
-          },error => {
-            this.$Message.error("切换失败");
-          }
-      );
     }
   }
 };
